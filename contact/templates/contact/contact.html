@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block title %}Message Sent | thetalkingdev{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Success Page Styles */
+    .success {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        animation: fadeIn 0.8s ease-out;
+        text-align: center;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    .success-icon {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+        color: #000000;
+    }
+    
+    .success-title {
+        font-size: 2.5rem;
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+        color: #000000;
+    }
+    
+    .success-message {
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: #444444;
+        margin-bottom: 3rem;
+    }
+    
+    .success-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 3rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border: 1px solid #000000;
+        color: #000000;
+        font-size: 0.9375rem;
+        transition: all 0.2s ease;
+        background: transparent;
+        cursor: pointer;
+    }
+    
+    .btn:hover {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    .btn-primary {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    .btn-primary:hover {
+        background: #333333;
+    }
+    
+    /* Auto-redirect message */
+    .redirect-message {
+        font-size: 0.875rem;
+        color: #666666;
+        margin-top: 2rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .success {
+            padding: 3rem 1.5rem;
+        }
+        
+        .success-title {
+            font-size: 2rem;
+        }
+        
+        .success-icon {
+            font-size: 3rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .success {
+            padding: 2rem 1rem;
+        }
+        
+        .success-title {
+            font-size: 1.75rem;
+        }
+        
+        .success-message {
+            font-size: 1rem;
+        }
+        
+        .success-actions {
+            flex-direction: column;
+        }
+        
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+
+<section class="success">
+    <div class="success-icon">
+        ✓
+    </div>
+    
+    <h1 class="success-title">Message Sent Successfully</h1>
+    
+    <div class="success-message">
+        <p>Thank you for reaching out! I've received your message and will get back to you within 24 hours.</p>
+        <p>In the meantime, feel free to explore my projects or read my blog posts.</p>
+    </div>
+    
+    <div class="success-actions">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+        <a href="/projects/" class="btn">View Projects</a>
+        <a href="/blog/" class="btn">Read Blog</a>
+    </div>
+    
+    <div class="redirect-message" id="redirectTimer">
+        You will be redirected to the home page in <span id="countdown">10</span> seconds...
+    </div>
+</section>
+
+<script>
+    // Auto-redirect after 10 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        let seconds = 10;
+        const countdownElement = document.getElementById('countdown');
+        const redirectTimer = document.getElementById('redirectTimer');
+        
+        const timer = setInterval(function() {
+            seconds--;
+            countdownElement.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(timer);
+                window.location.href = '/';
+            }
+        }, 1000);
+        
+        // Allow user to cancel auto-redirect
+        redirectTimer.addEventListener('click', function() {
+            clearInterval(timer);
+            this.innerHTML = 'Auto-redirect cancelled.';
+        });
+    });
+</script>
+
+{% endblock %}

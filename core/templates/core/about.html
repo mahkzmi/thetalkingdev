@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}About | thetalkingdev{% endblock %}
+
+{% block content %}
+
+<style>
+    /* About Page Styles */
+    .about {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        animation: fadeIn 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    .about-title {
+        font-size: 2.5rem;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        color: #000000;
+        text-align: center;
+    }
+    
+    .about-content {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: #444444;
+    }
+    
+    .about-content p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-content strong {
+        font-weight: 600;
+        color: #000000;
+    }
+    
+    .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 2rem 0;
+        list-style: none;
+    }
+    
+    .tech-item {
+        padding: 0.5rem 1rem;
+        border: 1px solid #000000;
+        font-size: 0.875rem;
+        color: #000000;
+        background: transparent;
+        transition: all 0.2s ease;
+    }
+    
+    .tech-item:hover {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .about {
+            padding: 3rem 1.5rem;
+        }
+        
+        .about-title {
+            font-size: 2rem;
+        }
+        
+        .about-content {
+            font-size: 1rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .about {
+            padding: 2rem 1rem;
+        }
+        
+        .about-title {
+            font-size: 1.75rem;
+        }
+        
+        .tech-list {
+            justify-content: center;
+        }
+    }
+</style>
+
+<section class="about">
+    <h1 class="about-title">About thetalkingdev</h1>
+    
+    <div class="about-content">
+        <p>
+            thetalkingdev was created to make complex technical concepts clear,
+            practical, and usable.
+        </p>
+        
+        <p>
+            I focus on <strong>Python</strong>, <strong>Django</strong>, and real-world systems.
+        </p>
+        
+        <ul class="tech-list">
+            <li class="tech-item">Python</li>
+            <li class="tech-item">Django</li>
+            <li class="tech-item">FastAPI</li>
+            <li class="tech-item">PostgreSQL</li>
+            <li class="tech-item">Docker</li>
+            <li class="tech-item">System Design</li>
+        </ul>
+        
+        <p>
+            Every project starts with understanding the core problem,
+            then building solutions that are both efficient and maintainable.
+        </p>
+        
+        <p>
+            The goal is always the same: write code that works today
+            and remains understandable tomorrow.
+        </p>
+    </div>
+</section>
+
+{% endblock %}
