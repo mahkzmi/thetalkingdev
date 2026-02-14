@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Message Sent | thetalkingdev{% endblock %}
+{% block title %}Contact | thetalkingdev{% endblock %}
 
 {% block content %}
 
 <style>
-    /* Success Page Styles */
-    .success {
+    /* Contact Page Styles */
+    .contact {
         max-width: 600px;
         margin: 0 auto;
         padding: 4rem 2rem;
         animation: fadeIn 0.8s ease-out;
-        text-align: center;
     }
     
     @keyframes fadeIn {
@@ -23,151 +22,181 @@
         }
     }
     
-    .success-icon {
-        font-size: 4rem;
-        margin-bottom: 2rem;
-        color: #000000;
-    }
-    
-    .success-title {
+    .contact-title {
         font-size: 2.5rem;
         font-weight: 400;
-        margin-bottom: 1.5rem;
-        color: #000000;
-    }
-    
-    .success-message {
-        font-size: 1.125rem;
-        line-height: 1.6;
-        color: #444444;
         margin-bottom: 3rem;
-    }
-    
-    .success-actions {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 3rem;
-    }
-    
-    .btn {
-        padding: 0.75rem 1.5rem;
-        text-decoration: none;
-        border: 1px solid #000000;
         color: #000000;
+        text-align: center;
+    }
+    
+    .contact-form {
+        width: 100%;
+    }
+    
+    /* استایل‌های فرم Django */
+    .contact-form p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-form label {
+        display: block;
         font-size: 0.9375rem;
-        transition: all 0.2s ease;
+        color: #000000;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #000000;
         background: transparent;
-        cursor: pointer;
+        color: #000000;
+        font-size: 1rem;
+        font-family: inherit;
+        box-sizing: border-box;
     }
     
-    .btn:hover {
-        background: #000000;
-        color: #ffffff;
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        outline: none;
+        border-color: #000000;
     }
     
-    .btn-primary {
-        background: #000000;
-        color: #ffffff;
+    .contact-form textarea {
+        min-height: 150px;
+        resize: vertical;
     }
     
-    .btn-primary:hover {
-        background: #333333;
-    }
-    
-    /* Auto-redirect message */
-    .redirect-message {
-        font-size: 0.875rem;
+    .contact-form .helptext {
+        display: block;
+        font-size: 0.8125rem;
         color: #666666;
-        margin-top: 2rem;
+        margin-top: 0.25rem;
+    }
+    
+    .contact-form .errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.5rem 0;
+    }
+    
+    .contact-form .errorlist li {
+        font-size: 0.8125rem;
+        color: #cc0000;
+        margin-bottom: 0.25rem;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: transparent;
+        color: #000000;
+        border: 1px solid #000000;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 1rem;
+        font-weight: 500;
+    }
+    
+    .submit-btn:hover {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    /* Contact Info */
+    .contact-info {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+        text-align: center;
+    }
+    
+    .contact-info p {
+        color: #666666;
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+    
+    /* Messages */
+    .messages {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #e0e0e0;
+        background: #f9f9f9;
+    }
+    
+    .messages p {
+        color: #444444;
+        margin: 0;
+        font-size: 0.9375rem;
+        text-align: center;
     }
     
     /* Responsive */
     @media (max-width: 768px) {
-        .success {
+        .contact {
             padding: 3rem 1.5rem;
         }
         
-        .success-title {
+        .contact-title {
             font-size: 2rem;
-        }
-        
-        .success-icon {
-            font-size: 3rem;
+            margin-bottom: 2.5rem;
         }
     }
     
     @media (max-width: 480px) {
-        .success {
+        .contact {
             padding: 2rem 1rem;
         }
         
-        .success-title {
+        .contact-title {
             font-size: 1.75rem;
         }
         
-        .success-message {
-            font-size: 1rem;
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.625rem;
         }
         
-        .success-actions {
-            flex-direction: column;
-        }
-        
-        .btn {
-            width: 100%;
-            text-align: center;
+        .contact-info {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
         }
     }
 </style>
 
-<section class="success">
-    <div class="success-icon">
-        ✓
-    </div>
+<section class="contact">
+    <h1 class="contact-title">Contact Me</h1>
     
-    <h1 class="success-title">Message Sent Successfully</h1>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     
-    <div class="success-message">
-        <p>Thank you for reaching out! I've received your message and will get back to you within 24 hours.</p>
-        <p>In the meantime, feel free to explore my projects or read my blog posts.</p>
-    </div>
+    <form method="post" class="contact-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit" class="submit-btn">Send Message</button>
+    </form>
     
-    <div class="success-actions">
-        <a href="/" class="btn btn-primary">Back to Home</a>
-        <a href="/projects/" class="btn">View Projects</a>
-        <a href="/blog/" class="btn">Read Blog</a>
-    </div>
-    
-    <div class="redirect-message" id="redirectTimer">
-        You will be redirected to the home page in <span id="countdown">10</span> seconds...
+    <div class="contact-info">
+        <p>You can also reach me directly at:</p>
+        <p>
+            <strong>Email:</strong> mah.kzmi21@gmail.com
+        </p>
+        <p>
+            I typically respond within 24 hours.
+        </p>
     </div>
 </section>
-
-<script>
-    // Auto-redirect after 10 seconds
-    document.addEventListener('DOMContentLoaded', function() {
-        let seconds = 10;
-        const countdownElement = document.getElementById('countdown');
-        const redirectTimer = document.getElementById('redirectTimer');
-        
-        const timer = setInterval(function() {
-            seconds--;
-            countdownElement.textContent = seconds;
-            
-            if (seconds <= 0) {
-                clearInterval(timer);
-                window.location.href = '/';
-            }
-        }, 1000);
-        
-        // Allow user to cancel auto-redirect
-        redirectTimer.addEventListener('click', function() {
-            clearInterval(timer);
-            this.innerHTML = 'Auto-redirect cancelled.';
-        });
-    });
-</script>
 
 {% endblock %}
