@@ -1,25 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}thetalkingdev | AgriTech Systems Developer{% endblock %}
+{% block title %}thetalkingdev | AgriTech & Backend Packages{% endblock %}
 
 {% block content %}
 
 <style>
-    /* Reset & Base */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: #ffffff;
-        color: #000000;
-        line-height: 1.6;
-        min-height: 100vh;
-    }
-
     /* Hero Section */
     .hero {
         min-height: 100vh;
@@ -36,16 +21,16 @@
     }
 
     .hero-content {
-        max-width: 640px;
+        max-width: 720px;
         text-align: center;
     }
 
     /* Badge */
     .hero-badge {
         display: inline-block;
-        font-size: 0.75rem;
-        color: #666;
-        letter-spacing: 0.15em;
+        font-size: 0.875rem;
+        color: #666666;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
     }
@@ -55,7 +40,8 @@
         font-size: 2.5rem;
         font-weight: 400;
         line-height: 1.2;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        color: #000000;
     }
 
     .highlight {
@@ -64,9 +50,15 @@
 
     /* Subtitle */
     .hero-subtitle {
-        font-size: 1.1rem;
-        color: #444;
+        font-size: 1.125rem;
+        color: #444444;
         margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+    .hero-subtitle strong {
+        font-weight: 600;
+        color: #000000;
     }
 
     /* Actions */
@@ -79,62 +71,263 @@
 
     .btn {
         padding: 0.75rem 1.75rem;
-        font-size: 0.9rem;
+        font-size: 0.9375rem;
         text-decoration: none;
-        border: 1px solid #000;
-        color: #000;
+        border: 1px solid #000000;
+        color: #000000;
         transition: all 0.2s ease;
+        background: transparent;
     }
 
     .btn:hover {
-        background: #000;
-        color: #fff;
+        background: #000000;
+        color: #ffffff;
+    }
+
+    /* Featured Packages Section */
+    .featured-packages {
+        padding: 4rem 2rem;
+        background: #f9f9f9;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .featured-packages h2 {
+        font-size: 2rem;
+        font-weight: 400;
+        margin-bottom: 3rem;
+        color: #000000;
+        text-align: center;
+    }
+
+    .packages-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+        padding: 0;
+        list-style: none;
+    }
+
+    .package-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        padding: 2rem 1.5rem;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .package-card:hover {
+        border-color: #000000;
+        transform: translateY(-2px);
+    }
+
+    .package-title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .package-description {
+        font-size: 0.9375rem;
+        color: #444444;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+        flex: 1;
+    }
+
+    .package-details {
+        margin: 1rem 0;
+        padding: 1rem 0;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .package-detail {
+        font-size: 0.9375rem;
+        color: #666666;
+        margin-bottom: 0.5rem;
+    }
+
+    .package-detail strong {
+        font-weight: 500;
+        color: #000000;
+    }
+
+    .package-link {
+        display: inline-block;
+        padding: 0.625rem 1.25rem;
+        border: 1px solid #000000;
+        color: #000000;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+        text-align: center;
+        margin-top: 1rem;
+        align-self: flex-start;
+    }
+
+    .package-link:hover {
+        background: #000000;
+        color: #ffffff;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-        .hero-title { font-size: 2rem; }
+        .hero-title {
+            font-size: 2rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+        }
+        
         .hero-actions {
             flex-direction: column;
             align-items: center;
         }
+        
         .btn {
             width: 100%;
-            max-width: 260px;
+            max-width: 280px;
+            text-align: center;
+        }
+        
+        .featured-packages {
+            padding: 3rem 1.5rem;
+        }
+        
+        .featured-packages h2 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+        }
+        
+        .packages-grid {
+            gap: 1.5rem;
+        }
+        
+        .package-card {
+            padding: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 1.75rem;
+        }
+        
+        .featured-packages {
+            padding: 2rem 1rem;
+        }
+        
+        .featured-packages h2 {
+            font-size: 1.5rem;
+        }
+        
+        .packages-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .package-link {
+            width: 100%;
             text-align: center;
         }
     }
 </style>
 
+<!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
-
-        <span class="hero-badge">Mahdieh Kazemi | AgriTech Systems & IoT Developer</span>
+        <span class="hero-badge">thetalkingdev | Backend & AgriTech Systems</span>
 
         <h1 class="hero-title">
-            Hi, I'm <span class="highlight">Mahdieh</span>
+            Build & Buy <span class="highlight">Backend & AgriTech Packages</span>
         </h1>
 
         <p class="hero-subtitle">
-            I design and build <strong>online and intelligent agricultural systems</strong><br>
-            with a strong focus on <strong>IoT-powered solutions</strong>, automation, and data-driven farming.
+            Get fully delivered <strong>Backend APIs</strong> or <strong>AgriTech & IoT simulations</strong> with <strong>crypto payment</strong> support.<br>
+            Perfect for Indie Hackers & AgriTech Founders.
         </p>
 
         <div class="hero-actions">
-            <a href="{% url 'projects:project_list' %}" class="btn">
-                View Projects
+            <a href="{% url 'services:services_list' %}" class="btn">
+                View Services & Buy via Crypto
             </a>
 
-            <a href="{% url 'blog:index' %}" class="btn">
-                Read Blog
+            <a href="{% url 'projects:project_list' %}" class="btn">
+                View Projects
             </a>
 
             <a href="{% url 'contact:contact' %}" class="btn">
                 Contact Me
             </a>
-
         </div>
+    </div>
+</section>
 
+<!-- Featured Packages Section -->
+<section class="featured-packages">
+    <h2>Featured Packages</h2>
+    
+    <div class="packages-grid">
+        <div class="package-card">
+            <h3 class="package-title">API MVP Pack</h3>
+            <p class="package-description">RESTful API + Auth + Database setup with best practices</p>
+            
+            <div class="package-details">
+                <div class="package-detail"><strong>Delivery:</strong> 5 days</div>
+                <div class="package-detail"><strong>Price:</strong> 300 USDT</div>
+            </div>
+            
+            <a href="{% url 'services:services_list' %}" class="package-link">
+                Buy Now →
+            </a>
+        </div>
+        
+        <div class="package-card">
+            <h3 class="package-title">Code Rescue & Refactor</h3>
+            <p class="package-description">Review & improve your existing code quality and performance</p>
+            
+            <div class="package-details">
+                <div class="package-detail"><strong>Delivery:</strong> 3–5 days</div>
+                <div class="package-detail"><strong>Price:</strong> 350 USDT</div>
+            </div>
+            
+            <a href="{% url 'services:services_list' %}" class="package-link">
+                Buy Now →
+            </a>
+        </div>
+        
+        <div class="package-card">
+            <h3 class="package-title">AgriTech Data Insights</h3>
+            <p class="package-description">Analyze & visualize soil, weather, and plant growth data</p>
+            
+            <div class="package-details">
+                <div class="package-detail"><strong>Delivery:</strong> 7 days</div>
+                <div class="package-detail"><strong>Price:</strong> 450 USDT</div>
+            </div>
+            
+            <a href="{% url 'services:services_list' %}" class="package-link">
+                Buy Now →
+            </a>
+        </div>
+        
+        <div class="package-card">
+            <h3 class="package-title">IoT Sensor Simulation</h3>
+            <p class="package-description">Simulate IoT sensors & generate realistic sample data streams</p>
+            
+            <div class="package-details">
+                <div class="package-detail"><strong>Delivery:</strong> 7–10 days</div>
+                <div class="package-detail"><strong>Price:</strong> 500 USDT</div>
+            </div>
+            
+            <a href="{% url 'services:services_list' %}" class="package-link">
+                Buy Now →
+            </a>
+        </div>
     </div>
 </section>
 
