@@ -47,7 +47,9 @@
         nav {
             display: flex;
             gap: 2rem;
-            align-items: center; /* اضافه شده برای تراز بهتر */
+            align-items: center;
+            flex-wrap: wrap; /* اضافه شده برای نمایش بهتر در موبایل */
+            justify-content: center; /* اضافه شده برای مرکز چین */
         }
         
         nav a {
@@ -58,7 +60,7 @@
             letter-spacing: 0.05em;
             transition: color 0.2s ease;
             position: relative;
-            padding: 0.25rem 0; /* اضافه شده برای فضای بهتر */
+            padding: 0.25rem 0;
         }
         
         nav a:hover {
@@ -119,6 +121,16 @@
             }
         }
         
+        @media (max-width: 600px) {
+            nav {
+                gap: 1rem;
+            }
+            
+            nav a {
+                font-size: 0.8125rem;
+            }
+        }
+        
         @media (max-width: 480px) {
             nav {
                 flex-direction: column;
@@ -132,7 +144,7 @@
             
             .logo {
                 font-size: 1.125rem;
-                margin-bottom: 0.5rem; /* اضافه شده */
+                margin-bottom: 0.5rem;
             }
         }
         
@@ -157,6 +169,7 @@
             <a href="/">Home</a>
             <a href="/about/">About</a>
             <a href="/projects/">Projects</a>
+            <a href="/services/">Services</a>  <!-- اضافه شده -->
             <a href="/blog/">Blog</a>
             <a href="{% url 'contact:contact' %}">Contact</a>
         </nav>
