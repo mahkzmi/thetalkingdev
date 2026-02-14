@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Services | thetalkingdev{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Services Page Styles */
+    .services {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        animation: fadeIn 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    .services-title {
+        font-size: 2.5rem;
+        font-weight: 400;
+        margin-bottom: 3rem;
+        color: #000000;
+        text-align: center;
+    }
+    
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        list-style: none;
+        padding: 0;
+    }
+    
+    .package-card {
+        border: 1px solid #e0e0e0;
+        padding: 2rem;
+        transition: all 0.2s ease;
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .package-card:hover {
+        border-color: #000000;
+        transform: translateY(-2px);
+    }
+    
+    .package-name {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+    
+    .package-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #444444;
+        margin-bottom: 1.5rem;
+        flex: 1;
+    }
+    
+    .package-details {
+        margin: 1.5rem 0;
+        padding: 1rem 0;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .package-price {
+        font-size: 1.25rem;
+        color: #000000;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+    
+    .package-price span {
+        font-weight: 400;
+        color: #666666;
+    }
+    
+    .package-delivery {
+        font-size: 0.9375rem;
+        color: #666666;
+    }
+    
+    .package-delivery strong {
+        font-weight: 500;
+        color: #000000;
+    }
+    
+    .package-link {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border: 1px solid #000000;
+        color: #000000;
+        font-size: 0.9375rem;
+        transition: all 0.2s ease;
+        text-align: center;
+        margin-top: auto;
+        align-self: flex-start;
+    }
+    
+    .package-link:hover {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    .empty-state {
+        text-align: center;
+        color: #666666;
+        font-size: 1.125rem;
+        padding: 3rem 0;
+        border: 1px solid #e0e0e0;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .services {
+            padding: 3rem 1.5rem;
+        }
+        
+        .services-title {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .services-grid {
+            gap: 1.5rem;
+        }
+        
+        .package-card {
+            padding: 1.5rem;
+        }
+        
+        .package-name {
+            font-size: 1.25rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .services {
+            padding: 2rem 1rem;
+        }
+        
+        .services-title {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+        }
+        
+        .services-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .package-card {
+            padding: 1.25rem;
+        }
+        
+        .package-price {
+            font-size: 1.125rem;
+        }
+        
+        .package-link {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+
+<section class="services">
+    <h1 class="services-title">Our Services</h1>
+    
+    {% if packages %}
+        <div class="services-grid">
+            {% for package in packages %}
+                <div class="package-card">
+                    <h3 class="package-name">{{ package.name }}</h3>
+                    
+                    <p class="package-description">{{ package.description }}</p>
+                    
+                    <div class="package-details">
+                        <div class="package-price">
+                            <span>Price:</span> {{ package.price_crypto }} USDT
+                        </div>
+                        
+                        <div class="package-delivery">
+                            <strong>Delivery:</strong> {{ package.delivery_days }} days
+                        </div>
+                    </div>
+                    
+                    <a href="{{ package.contact_link }}" class="package-link">
+                        Buy via Crypto
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            No packages available yet.
+        </div>
+    {% endif %}
+</section>
+
+{% endblock %}
