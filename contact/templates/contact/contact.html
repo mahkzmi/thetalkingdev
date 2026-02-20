@@ -14,12 +14,8 @@
     }
     
     @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
     
     .contact-title {
@@ -33,12 +29,8 @@
     .contact-form {
         width: 100%;
     }
-    
-    /* استایل‌های فرم Django */
-    .contact-form p {
-        margin-bottom: 1.5rem;
-    }
-    
+
+    /* فرم Formspree استایل */
     .contact-form label {
         display: block;
         font-size: 0.9375rem;
@@ -46,7 +38,7 @@
         margin-bottom: 0.5rem;
         font-weight: 500;
     }
-    
+
     .contact-form input,
     .contact-form textarea {
         width: 100%;
@@ -57,38 +49,14 @@
         font-size: 1rem;
         font-family: inherit;
         box-sizing: border-box;
+        margin-bottom: 1.5rem;
     }
-    
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-        outline: none;
-        border-color: #000000;
-    }
-    
+
     .contact-form textarea {
         min-height: 150px;
         resize: vertical;
     }
-    
-    .contact-form .helptext {
-        display: block;
-        font-size: 0.8125rem;
-        color: #666666;
-        margin-top: 0.25rem;
-    }
-    
-    .contact-form .errorlist {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 0.5rem 0;
-    }
-    
-    .contact-form .errorlist li {
-        font-size: 0.8125rem;
-        color: #cc0000;
-        margin-bottom: 0.25rem;
-    }
-    
+
     .submit-btn {
         width: 100%;
         padding: 0.75rem;
@@ -98,15 +66,14 @@
         font-size: 1rem;
         cursor: pointer;
         transition: all 0.2s ease;
-        margin-top: 1rem;
         font-weight: 500;
     }
-    
+
     .submit-btn:hover {
         background: #000000;
         color: #ffffff;
     }
-    
+
     /* Contact Info */
     .contact-info {
         margin-top: 4rem;
@@ -121,81 +88,29 @@
         line-height: 1.6;
         margin-bottom: 1rem;
     }
-    
-    /* Messages */
-    .messages {
-        margin-bottom: 2rem;
-        padding: 1rem;
-        border: 1px solid #e0e0e0;
-        background: #f9f9f9;
-    }
-    
-    .messages p {
-        color: #444444;
-        margin: 0;
-        font-size: 0.9375rem;
-        text-align: center;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-        .contact {
-            padding: 3rem 1.5rem;
-        }
-        
-        .contact-title {
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .contact {
-            padding: 2rem 1rem;
-        }
-        
-        .contact-title {
-            font-size: 1.75rem;
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            padding: 0.625rem;
-        }
-        
-        .contact-info {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-        }
-    }
 </style>
 
 <section class="contact">
     <h1 class="contact-title">Contact Me</h1>
     
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
-    
-    <form method="post" class="contact-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        
+    <!-- فرم Formspree -->
+    <form action="https://formspree.io/f/mwvnnjey" method="POST" class="contact-form">
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" id="name" placeholder="Your name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" name="email" id="email" placeholder="Your email" required>
+
+        <label for="message">Your Message:</label>
+        <textarea name="message" id="message" placeholder="Type your message here..." required></textarea>
+
         <button type="submit" class="submit-btn">Send Message</button>
     </form>
     
     <div class="contact-info">
         <p>You can also reach me directly at:</p>
-        <p>
-            <strong>Email:</strong> mah.kzmi21@gmail.com
-        </p>
-        <p>
-            I typically respond within 24 hours.
-        </p>
+        <p><strong>Email:</strong> mah.kzmi21@gmail.com</p>
+        <p>I typically respond within 24 hours.</p>
     </div>
 </section>
 
