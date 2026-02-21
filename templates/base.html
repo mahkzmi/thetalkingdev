@@ -169,7 +169,7 @@
             <a href="/">Home</a>
             <a href="/about/">About</a>
             <a href="/projects/">Projects</a>
-            <a href="/services/">Services</a>  <!-- اضافه شده -->
+            <a href="{% url 'services:services_list' %}">Services</a>  <!-- اضافه شده -->
             <a href="/blog/">Blog</a>
             <a href="{% url 'contact:contact' %}">Contact</a>
         </nav>
