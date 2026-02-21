@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}About | thetalkingdev{% endblock %}
+{% block title %}About | TheTalkingDev{% endblock %}
 
 {% block content %}
 
@@ -12,126 +12,116 @@
         padding: 4rem 2rem;
         animation: fadeIn 0.8s ease-out;
     }
-    
+
     @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
-    
+
     .about-title {
         font-size: 2.5rem;
         font-weight: 400;
         margin-bottom: 2rem;
-        color: #000000;
+        color: #000;
         text-align: center;
     }
-    
+
     .about-content {
         font-size: 1.125rem;
         line-height: 1.8;
-        color: #444444;
+        color: #444;
     }
-    
+
     .about-content p {
         margin-bottom: 1.5rem;
     }
-    
+
     .about-content strong {
         font-weight: 600;
-        color: #000000;
+        color: #000;
     }
-    
+
     .tech-list {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
         margin: 2rem 0;
         list-style: none;
+        justify-content: center;
     }
-    
+
     .tech-item {
         padding: 0.5rem 1rem;
-        border: 1px solid #000000;
+        border: 1px solid #000;
         font-size: 0.875rem;
-        color: #000000;
+        color: #000;
         background: transparent;
         transition: all 0.2s ease;
+        border-radius: 6px;
     }
-    
+
     .tech-item:hover {
-        background: #000000;
-        color: #ffffff;
+        background: #000;
+        color: #fff;
     }
-    
+
     /* Responsive */
     @media (max-width: 768px) {
-        .about {
-            padding: 3rem 1.5rem;
-        }
-        
-        .about-title {
-            font-size: 2rem;
-        }
-        
-        .about-content {
-            font-size: 1rem;
-        }
+        .about { padding: 3rem 1.5rem; }
+        .about-title { font-size: 2rem; }
+        .about-content { font-size: 1rem; }
     }
-    
+
     @media (max-width: 480px) {
-        .about {
-            padding: 2rem 1rem;
-        }
-        
-        .about-title {
-            font-size: 1.75rem;
-        }
-        
-        .tech-list {
-            justify-content: center;
-        }
+        .about { padding: 2rem 1rem; }
+        .about-title { font-size: 1.75rem; }
     }
 </style>
 
 <section class="about">
-    <h1 class="about-title">About thetalkingdev</h1>
-    
+    <h1 class="about-title">About TheTalkingDev</h1>
+
     <div class="about-content">
         <p>
-            thetalkingdev is a backend-focused development brand built around
-            clarity, structure, and production-ready systems.
+            <strong>TheTalkingDev</strong> is a specialized development brand focused on building
+            <strong>scalable backend systems</strong> and <strong>AgriTech solutions</strong>.
+            We combine technical precision with practical problem-solving to deliver production-ready software.
         </p>
-        
+
         <p>
-            I design and build <strong>backend architectures</strong> with a strong focus on
-            <strong>AgriTech</strong>, data-driven systems, and scalable APIs.
-            The goal is simple: turn real-world problems into clean, reliable software.
+            I craft and implement <strong>backend architectures</strong> and <strongAPIs</strong>
+            with a clear focus on <strong>AgriTech</strong>, IoT simulations, and data-driven systems.
+            Every project is designed to solve real-world problems with clean, maintainable code.
         </p>
-        
+
+        <p>
+            Key technologies and expertise include:
+        </p>
         <ul class="tech-list">
             <li class="tech-item">Python</li>
             <li class="tech-item">Django</li>
             <li class="tech-item">FastAPI</li>
             <li class="tech-item">PostgreSQL</li>
             <li class="tech-item">Docker</li>
-            <li class="tech-item">System Design</li>
+            <li class="tech-item">System Architecture</li>
+            <li class="tech-item">AgriTech Data Analysis</li>
+            <li class="tech-item">IoT Simulation</li>
         </ul>
-        
+
         <p>
-            My work centers around building structured backend packages —
-            from MVP APIs to AgriTech data systems and IoT simulations —
-            each delivered with clear documentation and defined scope.
+            From MVP APIs to full-featured AgriTech dashboards, every package is delivered with
+            precise documentation, clear scope, and maintainable architecture.
         </p>
-        
+
         <p>
-            Every project starts with understanding the system behind the idea:
-            data flow, architecture, scalability, and long-term maintainability.
-            The result is not just working code, but a backend foundation that
-            can grow with the product.
+            I start each project by understanding the system behind the idea:
+            data flow, scalability, and long-term growth. The result is a reliable backend
+            foundation that grows with your product.
+        </p>
+
+        <p>
+            <strong>TheTalkingDev</strong> is your partner for turning ideas into structured,
+            production-ready web systems that solve real-world challenges.
         </p>
     </div>
 </section>

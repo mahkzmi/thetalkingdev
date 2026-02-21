@@ -12,16 +12,12 @@
         padding: 4rem 2rem;
         animation: fadeIn 0.8s ease-out;
     }
-    
+
     @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
-    
+
     .projects-title {
         font-size: 2.5rem;
         font-weight: 400;
@@ -29,7 +25,7 @@
         color: #000000;
         text-align: center;
     }
-    
+
     .projects-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -37,146 +33,95 @@
         list-style: none;
         padding: 0;
     }
-    
+
     .project-card {
         border: 1px solid #e0e0e0;
         padding: 2rem;
         transition: all 0.2s ease;
         background: #ffffff;
+        cursor: pointer;
     }
-    
+
     .project-card:hover {
         border-color: #000000;
         transform: translateY(-2px);
     }
-    
+
     .project-title {
         font-size: 1.5rem;
         font-weight: 500;
         margin-bottom: 1rem;
         color: #000000;
     }
-    
+
     .project-description {
         font-size: 1rem;
         line-height: 1.6;
         color: #444444;
         margin-bottom: 1.5rem;
     }
-    
+
     .project-tech {
         font-size: 0.875rem;
         color: #666666;
         margin-bottom: 1.5rem;
     }
-    
+
     .project-tech strong {
         font-weight: 500;
         color: #000000;
     }
-    
-    .project-links {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    
-    .project-link {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-        text-decoration: none;
-        color: #000000;
-        border: 1px solid #000000;
-        transition: all 0.2s ease;
-    }
-    
-    .project-link:hover {
-        background: #000000;
-        color: #ffffff;
-    }
-    
+
     .empty-state {
         text-align: center;
         color: #666666;
         font-size: 1.125rem;
         padding: 3rem 0;
     }
-    
+
     /* Responsive */
     @media (max-width: 768px) {
-        .projects {
-            padding: 3rem 1.5rem;
-        }
-        
-        .projects-title {
-            font-size: 2rem;
-        }
-        
-        .project-card {
-            padding: 1.5rem;
-        }
-        
-        .project-title {
-            font-size: 1.25rem;
-        }
+        .projects { padding: 3rem 1.5rem; }
+        .projects-title { font-size: 2rem; }
+        .project-card { padding: 1.5rem; }
+        .project-title { font-size: 1.25rem; }
     }
-    
+
     @media (max-width: 480px) {
-        .projects {
-            padding: 2rem 1rem;
-        }
-        
-        .projects-title {
-            font-size: 1.75rem;
-        }
-        
-        .projects-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        .project-links {
-            flex-direction: column;
-        }
-        
-        .project-link {
-            width: 100%;
-            text-align: center;
-        }
+        .projects { padding: 2rem 1rem; }
+        .projects-title { font-size: 1.75rem; }
+        .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     }
 </style>
 
 <section class="projects">
     <h1 class="projects-title">Projects</h1>
-    
+
     {% if projects %}
         <ul class="projects-grid">
             {% for project in projects %}
-                <li class="project-card">
-                    <h3 class="project-title">{{ project.title }}</h3>
-                    
-                    <p class="project-description">{{ project.short_description }}</p>
-                    
-                    {% if project.tech_stack %}
-                        <div class="project-tech">
-                            <strong>Tech:</strong> {{ project.tech_stack }}
-                        </div>
-                    {% endif %}
-                    
-                    <div class="project-links">
-                        {% if project.github_url %}
-                            <a href="{{ project.github_url }}" target="_blank" class="project-link">
-                                GitHub
-                            </a>
-                        {% endif %}
-                        
-                        {% if project.live_url %}
-                            <a href="{{ project.live_url }}" target="_blank" class="project-link">
-                                Live Demo
-                            </a>
-                        {% endif %}
-                    </div>
-                </li>
+                <!-- داخل for loop در project_list.html -->
+<li class="project-card">
+    {% if project.slug %}
+        <a href="{% url 'projects:project_detail' project.slug %}" style="text-decoration:none; color:inherit;">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-description">{{ project.short_description }}</p>
+            {% if project.tech_stack %}
+                <div class="project-tech">
+                    <strong>Tech:</strong> {{ project.tech_stack }}
+                </div>
+            {% endif %}
+        </a>
+    {% else %}
+        <h3 class="project-title">{{ project.title }}</h3>
+        <p class="project-description">{{ project.short_description }}</p>
+        {% if project.tech_stack %}
+            <div class="project-tech">
+                <strong>Tech:</strong> {{ project.tech_stack }}
+            </div>
+        {% endif %}
+    {% endif %}
+</li>
             {% endfor %}
         </ul>
     {% else %}

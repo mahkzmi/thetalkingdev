@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Projects | thetalkingdev{% endblock %}
+
+{% block content %}
+
+<style>
+.project-detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+.project-detail-title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #007BFF;
+    text-align: center;
+}
+
+.project-detail-description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 2rem;
+}
+
+.project-detail-section {
+    margin-bottom: 2rem;
+}
+
+.project-detail-section h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.project-detail-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-detail-tech span {
+    padding: 0.5rem 1rem;
+    border: 1px solid #000;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: #000;
+}
+
+.project-detail-tech span:hover {
+    background: #000;
+    color: #fff;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.project-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.project-link:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width:768px) {
+    .project-detail { padding: 3rem 1.5rem; }
+    .project-detail-title { font-size: 2rem; }
+}
+@media (max-width:480px) {
+    .project-detail { padding: 2rem 1rem; }
+    .project-detail-title { font-size: 1.75rem; }
+    .project-links { flex-direction: column; }
+    .project-link { width: 100%; text-align: center; }
+}
+</style>
+
+<section class="project-detail">
+    <h1 class="project-detail-title">{{ project.title }}</h1>
+
+    <div class="project-detail-description">
+        {{ project.full_description|linebreaks }}
+    </div>
+
+    {% if project.tech_stack %}
+        <div class="project-detail-section">
+            <h4>Tech Stack</h4>
+            <div class="project-detail-tech">
+                {% for tech in project.tech_stack.split(',') %}
+                    {% if tech|trim %}
+                        <span>{{ tech|trim }}</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="project-detail-section">
+        <h4>Project Links</h4>
+        <div class="project-links">
+            {% if project.github_url %}
+                <a href="{{ project.github_url }}" target="_blank" class="project-link">GitHub</a>
+            {% endif %}
+            {% if project.live_url %}
+                <a href="{{ project.live_url }}" target="_blank" class="project-link">Live Demo</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
